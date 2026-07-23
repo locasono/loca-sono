@@ -9,11 +9,7 @@
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-<title>
-
-LOCA SONO | Aluguel de Colchões em Paranaguá, Matinhos e Litoral do Paraná
-
-</title>
+<title>Aluguel de Colchões em Paranaguá e Litoral do Paraná | LOCA SONO</title>
 
 <meta
 name="description"
@@ -64,8 +60,9 @@ content="LOCA SONO | Aluguel de Colchões">
 <meta property="og:description"
 content="Receba suas visitas com conforto. Aluguel de colchões para casas de praia, empresas e eventos.">
 
-<meta property="og:image"
-content="assets/hero.webp">
+<meta property="og:image" content="https://locasono.com.br/assets/hero.webp">
+<meta property="og:image:alt" content="Aluguel de colchões para visitas, eventos e empresas no litoral do Paraná">
+<meta property="og:site_name" content="LOCA SONO">
 
 <meta property="og:url"
 content="https://locasono.com.br">
@@ -89,15 +86,15 @@ content="LOCA SONO">
 name="twitter:description"
 content="Aluguel de colchões para visitas, eventos e empresas.">
 
-<meta
-name="twitter:image"
-content="assets/hero.webp">
+<meta name="twitter:image" content="https://locasono.com.br/assets/hero.webp">
 
 
 
-<link
-rel="icon"
-href="assets/favicon.png">
+<meta name="theme-color" content="#123F7F">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
 
 
 
@@ -140,7 +137,11 @@ alt="LOCA SONO">
 
 </a>
 
-<nav>
+<button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal">
+    <span></span><span></span><span></span>
+</button>
+
+<nav id="menu-principal">
 
 <a
 href="#inicio"
@@ -335,7 +336,8 @@ HOME
 
                 <img
                     src="assets/hero.webp"
-                    alt="Aluguel de colchões para visitas">
+                    alt="Aluguel de colchões para visitas no litoral do Paraná"
+                    width="735" height="1105" fetchpriority="high">
 
             </div>
 
@@ -381,7 +383,7 @@ PARA VOCÊ
 
                     <img
 
-                        src="assets/visitas.webp"
+                        src="assets/visitas.webp" loading="lazy" width="896" height="1280"
 
                         alt="Colchão para visitas">
 
@@ -423,7 +425,7 @@ PARA VOCÊ
 
                     <img
 
-                        src="assets/eventos.webp"
+                        src="assets/eventos.webp" loading="lazy" width="736" height="1308"
 
                         alt="Colchões para eventos">
 
@@ -465,7 +467,7 @@ PARA VOCÊ
 
                     <img
 
-                        src="assets/empresas.webp"
+                        src="assets/empresas.webp" loading="lazy" width="736" height="736"
 
                         alt="Colchões para empresas">
 
@@ -648,11 +650,6 @@ POR QUE ESCOLHER A LOCA SONO
 
 
 
-<!-- =====================================================
-CONFORTO
-===================================================== -->
-
-</section>
 <!-- =====================================================
 ÁREAS DE ATENDIMENTO
 ===================================================== -->
@@ -1034,7 +1031,7 @@ SCHEMA LOCAL BUSINESS
 
 "@context":"https://schema.org",
 
-"@type":"LocalBusiness",
+"@type":["LocalBusiness","RentalStore"],
 
 "name":"LOCA SONO",
 
@@ -1042,7 +1039,8 @@ SCHEMA LOCAL BUSINESS
 
 "url":"https://locasono.com.br",
 
-"telephone":"+55 41 98509-9405",
+"telephone":"+5541985099405",
+"priceRange":"$$",
 
 "logo":"https://locasono.com.br/assets/logo.svg.png",
 

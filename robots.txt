@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://locasono.com.br/sitemap.xml

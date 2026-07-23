@@ -1,150 +1,44 @@
-/* ==========================================================
-LOCA SONO
-SCRIPT
-========================================================== */
+document.addEventListener('DOMContentLoaded', () => {
+  const header = document.querySelector('header');
+  const menu = document.querySelector('nav');
+  const toggle = document.querySelector('.menu-toggle');
+  const menuLinks = document.querySelectorAll('nav a');
+  const sections = document.querySelectorAll('section[id]');
 
-document.addEventListener("DOMContentLoaded", () => {
+  const closeMenu = () => {
+    menu?.classList.remove('open');
+    toggle?.classList.remove('active');
+    toggle?.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('menu-open');
+  };
 
-    /* ===============================
-       Header com sombra ao rolar
-    =============================== */
+  toggle?.addEventListener('click', () => {
+    const isOpen = menu.classList.toggle('open');
+    toggle.classList.toggle('active', isOpen);
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    document.body.classList.toggle('menu-open', isOpen);
+  });
 
-    const header = document.querySelector("header");
+  menuLinks.forEach(link => link.addEventListener('click', closeMenu));
+  window.addEventListener('resize', () => { if (window.innerWidth > 820) closeMenu(); });
 
-    window.addEventListener("scroll", () => {
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 30);
+    header.style.boxShadow = window.scrollY > 30 ? '0 12px 35px rgba(0,0,0,.08)' : 'none';
 
-        if (window.scrollY > 40) {
-
-            header.style.boxShadow = "0 12px 35px rgba(0,0,0,.08)";
-
-        } else {
-
-            header.style.boxShadow = "none";
-
-        }
-
+    let current = '';
+    sections.forEach(section => {
+      if (window.scrollY >= section.offsetTop - 140) current = section.id;
     });
+    menuLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${current}`));
+  }, { passive:true });
 
-
-
-    /* ===============================
-       Rolagem suave
-    =============================== */
-
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-
-        link.addEventListener("click", function(e) {
-
-            const destino = document.querySelector(this.getAttribute("href"));
-
-            if (!destino) return;
-
-            e.preventDefault();
-
-            destino.scrollIntoView({
-
-                behavior:"smooth"
-
-            });
-
-        });
-
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', event => {
+      const target = document.querySelector(link.getAttribute('href'));
+      if (!target) return;
+      event.preventDefault();
+      target.scrollIntoView({ behavior:'smooth', block:'start' });
     });
-
-
-
-    /* ===============================
-       Animação ao aparecer
-    =============================== */
-
-    const sections = document.querySelectorAll(
-        "section, footer"
-    );
-
-    const observer = new IntersectionObserver(entries=>{
-
-        entries.forEach(entry=>{
-
-            if(entry.isIntersecting){
-
-                entry.target.animate([
-
-                    {
-
-                        opacity:0,
-
-                        transform:"translateY(60px)"
-
-                    },
-
-                    {
-
-                        opacity:1,
-
-                        transform:"translateY(0)"
-
-                    }
-
-                ],{
-
-                    duration:700,
-
-                    easing:"ease-out",
-
-                    fill:"forwards"
-
-                });
-
-            }
-
-        });
-
-    },{
-
-        threshold:.15
-
-    });
-
-    sections.forEach(section=>observer.observe(section));
-
-
-
-    /* ===============================
-       Destaque do menu
-    =============================== */
-
-    const menuLinks = document.querySelectorAll("nav a");
-
-    const pageSections = document.querySelectorAll("section");
-
-    window.addEventListener("scroll",()=>{
-
-        let atual="";
-
-        pageSections.forEach(sec=>{
-
-            const top = sec.offsetTop-150;
-
-            if(window.scrollY>=top){
-
-                atual=sec.getAttribute("id");
-
-            }
-
-        });
-
-        menuLinks.forEach(link=>{
-
-            link.classList.remove("active");
-
-            if(link.getAttribute("href")==="#"+atual){
-
-                link.classList.add("active");
-
-            }
-
-        });
-
-    });
-
+  });
 });
